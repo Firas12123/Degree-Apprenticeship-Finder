@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Degree Apprenticeship Tracker</title>
+</head>
+<body style="background-color: #030712; color: #f9fafb; font-family: 'Inter', -apple-system, sans-serif; margin: 0; padding: 0;">
+
+    <nav style="border-bottom: 1px solid #1f2937; background: rgba(3, 7, 18, 0.8); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: 700; font-size: 1rem; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+            <span style="background: #2563eb; color: white; padding: 4px 8px; border-radius: 6px; font-size: 0.75rem;">v1.0</span>
+            ApprenticeshipTracker
+        </div>
+        <div style="font-size: 0.85rem; color: #9ca3af; background: #111827; border: 1px solid #1f2937; padding: 6px 12px; border-radius: 20px;">
+            Flask + SQLite ⚡
+        </div>
+    </nav>
+
+    <div style="max-width: 800px; margin: 40px auto; padding: 0 20px;">
+
+        <div style="margin-bottom: 32px;">
+            <h1 style="font-size: 1.75rem; font-weight: 700; color: #ffffff; margin: 0 0 8px 0; letter-spacing: -0.025em;">
+                Current Degree Apprenticeships
+            </h1>
+            <p style="font-size: 0.95rem; color: #9ca3af; margin: 0;">
+                Current Degree Apprenticeships here
+            </p>
+        </div>
+
+        <ul style="padding-left: 0; list-style-type: none; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+            {% for job in jobs %}
+                <li style="background: #111827; border: 1px solid #1f2937; padding: 24px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s ease;">
+
+
+                    <div style="display: flex; flex-direction: column; gap: 8px; max-width: 580px;">
+                        <div>
+                            <span style="background: #1e3a8a; color: #93c5fd; font-size: 0.75rem; font-weight: 600; padding: 4px 10px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.05em;">
+                                {{ job[3] }}
+                            </span>
+                        </div>
+                        <span style="font-size: 1rem; color: #f3f4f6; font-weight: 600; line-height: 1.4;">
+                            {{ job[1] }}
+                        </span>
+                    </div>
+
+                    <div>
+                        <a href="{{ job[2] }}" target="_blank" style="background-color: #2563eb; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.85rem; white-space: nowrap; display: inline-block; transition: background 0.2s;">
+                            Apply Here
+                        </a>
+                    </div>
+
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+</body>
+</html>

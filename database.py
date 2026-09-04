@@ -5,7 +5,7 @@ def db_sync():
     cursor = connection.cursor()
     return cursor,connection
 
-def jobs_database(cursor,connection):   # creates database if its not already made
+def jobs_database(cursor,connection):   # creates database if it's not already made
     cursor.execute("""CREATE TABLE IF NOT EXISTS jobs(
                 jobId INTEGER PRIMARY KEY,
                 jobTitle TEXT,
@@ -17,8 +17,12 @@ def jobs_database(cursor,connection):   # creates database if its not already ma
 def insert_jobs(jobs_dict, connection, cursor):
     length = 0
     for jobs_id, details in jobs_dict.items(): # inserts the job details into the database
-        length += 1
         cursor.execute("INSERT OR IGNORE INTO jobs VALUES(?,?,?,?)",(jobs_id,details["jobTitle"], details["url"], details["companyName"]))
+        length += 1
         connection.commit()
     print(f"You have added {length} jobs to your jobs table!")
     
+def get_jobs(cursor):
+    all_jobs = cursor.execute("SELECT * FROM jobs")
+    job = all_jobs.fetchall()
+    return job
