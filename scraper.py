@@ -12,7 +12,7 @@ class Friendly_Bot():
     def slugify(self):  # make sure the user input has no capitals and a dash between the two words
         slug_chars = []
         list_slugs = []
-        job_title = ["Software Engineering","Cyber Security"]
+        job_title = ["Software Engineering"]
         for jobs in job_title:
             jobs = jobs.strip().replace(" ", "-")  # take out the spaces and adds a hyphen where the space is and turns lowercase
             for index, char in enumerate(jobs):
