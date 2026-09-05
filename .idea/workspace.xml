@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5493bd76-82f8-4fae-95ca-09caba45dbbb" name="Changes" comment="&quot;developed an automated python utility that takes a user input for job titles and gets live UK degree apprenticeship listings&quot;" />
+    <list default="true" id="5493bd76-82f8-4fae-95ca-09caba45dbbb" name="Changes" comment="&quot;developed an automated python utility that takes a user input for job titles and gets live UK degree apprenticeship listings&quot;">
+      <change afterPath="$PROJECT_DIR$/seen_jobs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/email_sender.py" beforeDir="false" afterPath="$PROJECT_DIR$/email_sender.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
