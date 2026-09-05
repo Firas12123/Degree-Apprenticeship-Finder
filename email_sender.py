@@ -17,9 +17,9 @@ def send_emails(new_jobs):
         
         body = "All the Degree Apprenticeships you haven't applied for yet hurry up and go apply \n \n"
         for job in new_jobs:
-            body += f"Company: {job["companyName"]}\n"
-            body += f"Role: {job["jobTitle"]}\n"
-            body += f"Link: {job["url"]}\n"
+            body += f"Company: {job['companyName']}\n"
+            body += f"Role: {job['jobTitle']}\n"
+            body += f"Link: {job['url']}\n"
             body += "\n" +"-" *40 + "\n"
         msg.set_content(body)
         try:
