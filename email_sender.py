@@ -4,7 +4,7 @@ import os
 
 def send_emails(new_jobs):
     sender_email = "firascosta80@gmail.com"
-    email_password = os.environ.get("EMAIL_PASSWORD")
+    EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
     # cant show my password on GitHub sorry
     if len(new_jobs) == 0:
         return False
@@ -24,7 +24,7 @@ def send_emails(new_jobs):
         msg.set_content(body)
         try:
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-                smtp.login(sender_email, email_password)
+                smtp.login(sender_email, EMAIL_PASSWORD)
                 smtp.send_message(msg)
             print("Email notification sent successfully!")
         except Exception as e:
