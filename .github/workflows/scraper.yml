@@ -1,8 +1,12 @@
 name: Apprenticeship Scraper
+
 on:
   schedule:
     - cron: '0 */4 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   scrape:
@@ -23,3 +27,10 @@ jobs:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
           python -c "from scraper import Friendly_Bot; from email_sender import send_emails; bot = Friendly_Bot('FirasTracker/1.0'); jobs = bot.get_apprenticeships(bot.slugify()); send_emails(list(jobs.values()))"
+
+      - name: Commit and push seen jobs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add seen_jobs.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update seen jobs [skip ci]" && git push)
