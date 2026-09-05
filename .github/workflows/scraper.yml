@@ -4,19 +4,22 @@ on:
     - cron: '0 */4 * * *'
   workflow_dispatch:
 
-
 jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - name: Install dependencies
         run: pip install -r requirements.txt
 
       - name: Run Scraper
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
         run: |
           python -c "from scraper import Friendly_Bot; from email_sender import send_emails; bot = Friendly_Bot('FirasTracker/1.0'); jobs = bot.get_apprenticeships(bot.slugify()); send_emails(list(jobs.values()))"
