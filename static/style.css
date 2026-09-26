@@ -1,0 +1,134 @@
+.minus-plus,
+.jobs-display,
+#tick-box{
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+    -webkit-backface-visibility: hidden;
+}
+
+.main-font{
+    font-family: 'Inter', sans-serif;
+    font-size: 19px;
+    letter-spacing: -1px;
+    font-weight: 600;
+    color: #1a2530;
+}
+
+.navbar{
+    display: flex;
+    position: relative;
+    border-bottom: solid black 1px;
+}
+
+#main-jobs{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 50px;
+    gap: 30px;
+    padding: 0 2%;
+}
+
+#name-div{
+
+}
+
+#company{
+    background: lightgrey;
+    border-radius: 7px;
+    padding: 3px 6px 0;
+    width: fit-content;
+}
+
+#name-div{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.jobs-display{
+    border: black solid 1px;
+    border-radius: 10px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.jobs-display:hover {
+    transform: perspective(1px) scale(1.03)
+}
+
+.tick-box{
+    height: 27px;
+    width: 27px;
+    border-radius: 3px;
+    border: black solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.tick-box:hover {
+    transform: perspective(1px) scale(1.02);
+    will-change: transform;
+}
+
+.tick{
+    visibility: hidden;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.tick.active{
+    visibility: visible;
+}
+
+#job-name{
+    max-width: 90%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#nav-title{
+    margin-left: 5%;
+}
+
+.nav-counter{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.shape{
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+}
+
+.minus-plus{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 2px auto 10px;
+    border-radius: 50%;
+    background: transparent;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    border: black solid 1px;
+}
+
+.minus-plus:hover{
+    transform: perspective(1px)  scale(1.08)
+}

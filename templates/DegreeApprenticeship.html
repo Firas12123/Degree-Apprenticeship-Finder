@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DA Tracker</title>
+    <link rel ="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+        <p class="main-font" id="nav-title">DegreeApprenticeshipTracker</p>
+        <div class="nav-counter">
+            <p class="main-font" id="applied-counter"></p>
+            <button type="button" class="minus-plus" id="plus-button">
+                <svg class="shape" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <button type="button" class="minus-plus" id="minus-button">
+                <svg class="shape" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+            </button>
+            <p style="margin-left: 8px;" class="main-font">Hopefully not alot</p>
+        </div>
+    </nav>
+</header>
+<div id="main-jobs">
+    {% for jobs in jobs_dict %}
+    <div class="jobs-display">
+        <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
+        <div id="name-div">
+            <h2 class="main-font" id="job-name">{{ jobs[1] }}</h2>
+            <button type="button" class="tick-box">
+                <svg class="tick" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+<script src= "{{ url_for('static', filename='main.js') }}" ></script>
+</html>
+
