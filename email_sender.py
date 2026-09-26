@@ -18,14 +18,15 @@ def send_emails(new_jobs):
     if len(all_jobs) == 0:
         return False
         
-    sender_email = "firascosta80@gmail.com"
+    SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
     EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
     # cant show my password on GitHub sorry
     msg = EmailMessage()
     word = "Apprenticeships" if len(all_jobs) >1 else "Apprenticeship"
     msg["Subject"] = f"🚀 {len(all_jobs)} new Degree {word} Dropped!"
-    msg["From"] = sender_email
-    msg["To"] = "firascosta80@gmail.com", "hussain280108@gmail.com"
+    msg["From"] = SENDER_EMAIL
+    RECEIVER_EMAILS = os.environ.get("RECEIVER_EMAILS")
+    msg["To"] = RECEIVER_EMAILS
     
     body = "All the Degree Apprenticeships you haven't applied for yet hurry up and go apply \n \n"
     for job in all_jobs:
