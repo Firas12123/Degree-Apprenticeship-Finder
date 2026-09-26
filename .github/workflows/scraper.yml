@@ -25,6 +25,8 @@ jobs:
       - name: Run Scraper
         env:
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          RECEIVER_EMAILS: ${{ secrets.RECEIVER_EMAILS }}
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
         run: |
           python -c "from scraper import Friendly_Bot; from email_sender import send_emails; bot = Friendly_Bot('FirasTracker/1.0'); jobs = bot.get_apprenticeships(bot.slugify()); send_emails(list(jobs.values()))"
 
