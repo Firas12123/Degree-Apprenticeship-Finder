@@ -37,7 +37,7 @@ def send_emails(new_jobs):
     msg.set_content(body)
     try:
         with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-            smtp.login(sender_email, EMAIL_PASSWORD)
+            smtp.login(SENDER_EMAL, EMAIL_PASSWORD)
             smtp.send_message(msg)
         print("Email notification sent successfully!")
         
