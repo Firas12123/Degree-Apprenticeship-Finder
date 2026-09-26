@@ -69,6 +69,5 @@ class Friendly_Bot():
                                    "url": dictionary["url"],
                                    "companyName": dictionary["companyName"]}
         
-        print(f"debugging {len(jobs_dict)} jobs.")
         return jobs_dict
 
