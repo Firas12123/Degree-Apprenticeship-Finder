@@ -19,6 +19,7 @@ def send_emails(new_jobs):
         return False
         
     SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
+    print(f"{SENDER_EMAIL} working")
     EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
     # cant show my password on GitHub sorry
     msg = EmailMessage()
