@@ -4,13 +4,13 @@ import os
 import json
 
 
-SEEN_FILE = "seen_jobs.json"
+seen_file = "seen_jobs.json"
 
 def send_emails(new_jobs):
     seen_urls = set()
-    if os.path.exists(SEEN_FILE):
+    if os.path.exists(seen_file):
         try:
-            with open(SEEN_FILE, "r") as file:
+            with open(seen_file, "r") as file:
                 seen_urls = set(json.load(file))
         except Exception:
             seen_urls = set()
@@ -19,7 +19,6 @@ def send_emails(new_jobs):
         return False
         
     SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
-    print(f"{SENDER_EMAIL} working")
     EMAIL_PASSWORD = os.environ.get("EMAIL_PASSWORD")
     # cant show my password on GitHub sorry
     msg = EmailMessage()
@@ -45,7 +44,7 @@ def send_emails(new_jobs):
         for job in all_jobs:
             seen_urls.add(job["url"])
         
-        with open(SEEN_FILE, "w") as file:
+        with open(seen_file, "w") as file:
             json.dump(list(seen_urls),file, indent = 2) # converts our python data into json for program to read
     except Exception as e:
         print(f"Error sending email: {e}")

@@ -68,6 +68,7 @@ class Friendly_Bot():
                 jobs_dict[job_id] = {"jobTitle": dictionary["jobTitle"],
                                    "url": dictionary["url"],
                                    "companyName": dictionary["companyName"]}
-            
+        
+        print(f"debugging {len(jobs_dict)} jobs.")
         return jobs_dict
 
