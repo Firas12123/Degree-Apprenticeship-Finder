@@ -1,6 +1,6 @@
 from scraper import Friendly_Bot
 from database import insert_jobs, db_sync, jobs_database, get_jobs
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from email_sender import send_emails
 
 my_bot = Friendly_Bot(agent_string="FirasApprenticeshipTracker/1.0")
@@ -25,14 +25,24 @@ else:
     print("No jobs found for that title")
 
 app = Flask(__name__)
-jobs_dic = get_jobs(cursor)
 
 @app.route("/")
 def home():
-   return render_template("DegreeApprenticeship.html", jobs_dict = jobs_dic)
+    jobs_dic = get_jobs(cursor, connection)
+    return render_template("DegreeApprenticeship.html", jobs_dict = jobs_dic)
 
-connection.close()
+@app.route("/checked", methods = ["POST"])
+def applied_for():
+    data = request.get_json()
+    applied = data.get("applied")
+    job_id = data.get("job_id")
+    cursor.execute("UPDATE jobs SET applied = ? WHERE jobId = ?", (applied, job_id))
+    cursor.execute("SELECT applied FROM jobs WHERE jobId =?",(job_id,))
+    result = cursor.fetchone()
+    print(result)
+    connection.commit()
+    return "", 200
+
 if __name__ == "__main__":
     app.run(debug=True)
 # remember to change to false
-

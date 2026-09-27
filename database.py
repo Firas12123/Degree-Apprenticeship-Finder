@@ -1,7 +1,7 @@
 import sqlite3
 
 def db_sync():
-    connection = sqlite3.connect("jobs.db")    # sync the connection and the cursor and connect to the jobs database
+    connection = sqlite3.connect("jobs.db", check_same_thread = False)    # sync the connection and the cursor and connect to the jobs database
     cursor = connection.cursor()
     connection.commit()
     return cursor,connection
@@ -23,7 +23,8 @@ def insert_jobs(jobs_dict, connection, cursor):
         cursor.execute("INSERT OR IGNORE INTO jobs (jobId, jobTitle, url, companyName) VALUES(?,?,?,?)",(jobs_id,details["jobTitle"], details["url"], details["companyName"]))
     connection.commit()
     
-def get_jobs(cursor):
+def get_jobs(cursor, connection):
     all_jobs = cursor.execute("SELECT * FROM jobs")
     job = all_jobs.fetchall()
+    connection.commit()
     return job

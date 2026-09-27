@@ -31,12 +31,12 @@
 </header>
 <div id="main-jobs">
     {% for jobs in jobs_dict %}
-    <div class="jobs-display">
+    <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
         <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
         <div id="name-div">
             <h2 class="main-font" id="job-name">{{ jobs[1] }}</h2>
             <button type="button" class="tick-box">
-                <svg class="tick" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="tick" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
             </button>
