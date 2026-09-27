@@ -6,6 +6,10 @@ const job_box = document.querySelectorAll(".jobs-display")
 let applied_for = document.getElementById("applied-counter");
 let amount = Number(localStorage.getItem("counter"));
 const apply_button = document.querySelectorAll(".apply-button")
+const cancel_button = document.querySelectorAll(".cancel-button")
+const confirm_choice = document.querySelectorAll(".confirm")
+const cancel_b = document.querySelectorAll(".cancel-b")
+const overlays = document.querySelectorAll(".overlay")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -71,9 +75,37 @@ function appliedFor(index) {
     applied_for.textContent = "Total DA's applied for : " + amount;
 }
 
+function confirmChoice(index){
+    confirm_choice[index].classList.add("active")
+    overlays[index].classList.add("active")
+}
+
+
 tick_box.forEach((box, index) =>{
     box.addEventListener("click", () => appliedFor(index));
 })
+
+cancel_button.forEach((box, index) =>{
+    box.addEventListener("click", () => confirmChoice(index))
+})
+
+cancel_b.forEach((canceler, index) => {
+    const overlay = overlays[index]
+    const confirm = confirm_choice[index]
+    const removeOverlay = () => {
+        overlay.classList.remove("active")
+        confirm.classList.remove("active")
+    }
+    overlay.addEventListener("click", (e) => {
+        if (e.target === overlay){
+            removeOverlay();
+        }
+    })
+    canceler.addEventListener("click", removeOverlay)
+})
+
+
+
 
 add_button.addEventListener("click", () => changeCount("+"));
 minus_button.addEventListener("click", () => changeCount("-"));

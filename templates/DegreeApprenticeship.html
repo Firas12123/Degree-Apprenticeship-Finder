@@ -31,9 +31,29 @@
 </header>
 <div id="main-jobs">
     {% for jobs in jobs_dict %}
-    <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
+        <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
         <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
-        <div id="name-div">
+        <div class="name-div">
+            <button type="button" class="cancel-button">
+                <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+                  <path d="M8.5 8.5 L15.5 15.5 M15.5 8.5 L8.5 15.5" stroke="#EF4444" stroke-width="2" stroke-linecap="round" fill="none"/>
+                </svg>
+            </button>
+            <div class="overlay">
+                <div class="confirm">
+                    <button type="button" class="cancel-b">
+                        <svg id="cancel-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <line x1="4" y1="4" x2="20" y2="20" style="stroke: black; stroke-width: 2; stroke-linecap: round;" />
+                            <line x1="20" y1="4" x2="4" y2="20" style="stroke: black; stroke-width: 2; stroke-linecap: round;" />
+                        </svg>
+                    </button>
+                    <p id="confirm-text" class="main-font">Click yes to remove the job</p>
+                    <div id="yesno-div">
+                        <button type="button" class="yes-no yes">Yes</button>
+                        <button type="button" class="yes-no no">No</button>
+                    </div>
+                </div>
+            </div>
             <h2 class="main-font" id="job-name">{{ jobs[1] }}</h2>
             <button type="button" class="tick-box">
                 <svg class="tick" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">

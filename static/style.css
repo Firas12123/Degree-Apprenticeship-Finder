@@ -1,6 +1,8 @@
 .minus-plus,
 .jobs-display,
-#tick-box{
+.cancel-b,
+.tick-box,
+.yes-no{
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -30,20 +32,21 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 50px;
-    gap: 30px;
-    padding: 0 2%;
+    gap: 15px;
+    padding: 0 15px;
 }
 
-#name-div{
+.name-div{
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 #company{
-    background: lightgrey;
+    background: #e8e7e6;
+    border: solid lightgrey 1px;
     border-radius: 7px;
-    padding: 3px 6px 0;
+    padding: 5px 8px 5px;
     width: fit-content;
 }
 
@@ -59,6 +62,19 @@ body{
     padding: 0 10px;
     box-sizing: border-box;
     transition: transform 0.3s ease;
+}
+
+.overlay{
+    display: none;
+    position: fixed;
+    inset: 1px;
+    backdrop-filter: blur(2px);
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.overlay.active{
+    display: flex;
 }
 
 .jobs-display:hover {
@@ -93,6 +109,63 @@ body{
     visibility: visible;
 }
 
+
+#x-icon{
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.cancel-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-sizing: border-box;
+    height: 40px;
+    width: 40px;
+    margin-right: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: red 0;
+}
+
+.cancel-button:hover {
+    transform: scale(1.12);
+    border: solid lightgrey 1px;
+    border-radius: 50%;
+    background: #e8e7e6;
+}
+
+.cancel-b{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    box-sizing: border-box;
+    height: 24px;
+    width: 24px;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: -15px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    border: red 0;
+}
+
+.cancel-b:hover {
+    transform: scale(1.12);
+    border: solid lightgrey 1px;
+    border-radius: 50%;
+    background: #e8e7e6;
+}
+
+#cancel-icon{
+    width: 19px;
+    height: 19px;
+    flex-shrink: 0;
+}
+
 .apply-button{
     top: 50%;
     width: 90px;
@@ -108,12 +181,12 @@ body{
 }
 
 .apply-button.active {
-    background: lightgrey;
+    background: #e8e7e6;
 
 }
 
 #job-name{
-    max-width: 65%;
+    max-width: 60%;
     font-size: 20px;
     font-weight: 700;
 }
@@ -152,4 +225,62 @@ body{
 
 .minus-plus:hover{
     transform: perspective(1px)  scale(1.08)
+}
+
+
+
+.confirm{
+    display: inline-block;
+    position: absolute;
+    border: solid black 1px;
+    padding: 0 8px 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 9px;
+    background: white;
+    visibility: hidden;
+}
+
+.confirm.active{
+    position: absolute;
+    visibility: visible;
+    backdrop-filter: blur(8px);
+    z-index: 10;
+}
+
+.confirm-text{
+    font-size: 16px;
+}
+
+.no{
+
+}
+
+.yes{
+
+}
+
+#yesno-div{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: space-between;
+    gap: 2px;
+    padding: 0 2px;
+}
+
+.yes-no{
+    width: 65px;
+    text-align: center;
+    margin: auto;
+    font-size: 20px;
+    border: black solid 1px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+    background: none;
+}
+
+.yes-no:hover {
+    transform: scale(1.05);
+    background: #e8e7e6;
 }
