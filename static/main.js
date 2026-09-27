@@ -5,12 +5,15 @@ const tick_display = document.querySelectorAll(".tick");
 const job_box = document.querySelectorAll(".jobs-display")
 let applied_for = document.getElementById("applied-counter");
 let amount = Number(localStorage.getItem("counter"));
+const apply_button = document.querySelectorAll(".apply-button")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
     if (Number(job_box[index].dataset.applied) === 1) {
         tick_display[index].classList.add("active")
         total_applied++
+        apply_button[index].textContent = "Applied"
+        apply_button[index].classList.add("active")
     }
 })
 
@@ -40,11 +43,16 @@ function appliedFor(index) {
         applied = 1
         total_applied++;
         amount++
+        apply_button[index].classList.add("active")
+        apply_button[index].textContent = "Applied"
+
     } else if (applied === 1) {
         tick_display[index].classList.remove("active")
         applied = 0
         total_applied--
         amount--
+        apply_button[index].classList.remove("active")
+        apply_button[index].textContent = "Apply here"
     }
     job_box[index].dataset.applied = String(applied)
 
