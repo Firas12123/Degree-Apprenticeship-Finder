@@ -1,18 +1,18 @@
-﻿# Software Engineering Degree Apprenticeship Tracker
+﻿# Degree Apprenticeship Tracker
 
-An automated Python web scraper and Flask dashboard built to track Software Engineering Degree Apprenticeships in real-time
+My automated Python web scraper and Flask dashboard built to track Software Engineering Degree Apprenticeships live
 
-I built this project to automate the job search process. It runs in the background, references live career portals against a local database, and alerts me when a new role drops so I can apply early
+I built this project to allow me to apply early to my chosen Degree Apprenticeships, made possible by Github automation tool which runs in the background every 4 hours ensuring early access to applications
 
 ## Core Features
-* **Automated Web Scraping:** Extracts live job data from target career sites
-* **Email Alerts:** Integrates `smtplib` to send email notifications when new roles are detected
-* **Interactive Dashboard:** A Flask powered web interface using the JavaScript Fetch API to hide or interact with jobs dynamically without page reloads
-* **Data Handling:** SQLite to store active jobs and track soft-deleted roles, ensuring no duplicate emails are sent
+* **Automated Web Scraping:** Extracts live job data from safe scraper friendly career sites
+* **Email Alerts:** Sends email notifications when new roles are detected (via Github automation)
+* **Interactive Dashboard:** A Flask web interface using JavaScript's POST method and Jinja to handle backend data
+* **Data Handling:** SQLite to store active jobs and track users removed jobs, used a JSON file that the Github agent appends after each new job so no duplicate emails are sent
 ## Tech Stack
-* **Backend:** Python, Flask, `smtplib`
+* **Backend:** Python, Flask
 * **Database:** SQLite
-* **Frontend:** HTML5, CSS (Flexbox), Vanilla JavaScript
+* **Frontend:** HTML, CSS, JavaScript
 
 ## Local Installation
 1. Clone this repository:
