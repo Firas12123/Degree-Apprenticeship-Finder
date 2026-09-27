@@ -17,7 +17,8 @@ if jobs_dict:  # sync the database and call the dictionary of the different jobs
         if not existing_job:
             new_j.append(job_id)
     for job_id in new_j:
-        new_job = jobs_dict[job_id]
+        new_job = jobs_dict[job_id
+        ]
         new_jobs.append(new_job)
     send_emails(new_jobs)
     insert_jobs(jobs_dict, connection, cursor)
@@ -37,9 +38,6 @@ def applied_for():
     applied = data.get("applied")
     job_id = data.get("job_id")
     cursor.execute("UPDATE jobs SET applied = ? WHERE jobId = ?", (applied, job_id))
-    cursor.execute("SELECT applied FROM jobs WHERE jobId =?",(job_id,))
-    result = cursor.fetchone()
-    print(result)
     connection.commit()
     return "", 200
 
