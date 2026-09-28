@@ -12,6 +12,7 @@ const cancel_b = document.querySelectorAll(".cancel-b")
 const overlays = document.querySelectorAll(".overlay")
 const submit_job = document.getElementById("submit-job")
 const clear_jobs = document.getElementById("clear-search")
+const jobs_list = document.getElementById("jobs")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -136,9 +137,18 @@ function searchJobs(task){
         }
     })
 }
+function displayJobs() {
+    const all_jobs= JSON.parse(localStorage.getItem("jobs")) || []
+    all_jobs.forEach(job => {
+        const li = document.createElement("li");
+        li.textContent = job;
+        jobs_list.appendChild(li);
+    })
+}
 
-submit_job.addEventListener("click", () => searchJobs(""))
-clear_jobs.addEventListener("click", () => searchJobs("delete"))
+
+submit_job.addEventListener("click", () => searchJobs(""));
+clear_jobs.addEventListener("click", () => searchJobs("delete"));
 add_button.addEventListener("click", () => changeCount("+"));
 minus_button.addEventListener("click", () => changeCount("-"));
-
+displayJobs();

@@ -310,13 +310,35 @@ body{
     transform: scale(1.06)
 }
 
+#jobs{
+    list-style: none;
+    padding: 0;
+}
+
 #jobs-div{
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: auto;
     width: fit-content;
+    border: solid black 1px;
+    border-bottom: none;
+    border-radius: 7px;
+}
 
+#filter-layout{
+    display: flex;
+    margin-left: auto;
+    gap: 10px;
+}
+
+#filters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    width: fit-content;
+    min-width: 200px;
     border: solid black 1px;
     border-bottom: none;
     border-radius: 7px;
@@ -327,9 +349,14 @@ body{
     align-items: center;
 }
 
+#filter-head{
+    padding: 0;
+    margin: 5px 0 0;
+}
+
 #clear-search{
     margin-right: 20px;
-    width: 130px;
+    width: fit-content;
     height: 30px;
     border: solid black 1px;
     border-radius: 9px;

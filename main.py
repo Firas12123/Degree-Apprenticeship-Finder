@@ -25,8 +25,9 @@ def sync_jobs(jobs_dict, connection):
     else:
         print("No jobs found for that title")
 
-titles = os.environ.get("JOB_TITLES") # for my Github workflow
+titles = os.environ.get("JOB_TITLES", "") # for my Github workflow
 my_bot = Friendly_Bot(agent_string="FirasApprenticeshipTracker/1.0")
+
 slug_job = my_bot.slugify([titles])
 jobs_dict = my_bot.get_apprenticeships(slug_job)
 sync_jobs(jobs_dict, connection)
