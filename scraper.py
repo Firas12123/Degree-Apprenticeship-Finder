@@ -2,6 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from database import db_sync
+import os
 
 class Friendly_Bot():
     def __init__(self,agent_string):

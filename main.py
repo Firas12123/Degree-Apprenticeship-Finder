@@ -1,3 +1,4 @@
+import os
 from scraper import Friendly_Bot
 from database import insert_jobs, db_sync, jobs_database, get_jobs
 from flask import Flask, render_template, request
@@ -24,8 +25,9 @@ def sync_jobs(jobs_dict, connection):
     else:
         print("No jobs found for that title")
 
+titles = os.environ.get("JOB_TITLES") # for my Github workflow
 my_bot = Friendly_Bot(agent_string="FirasApprenticeshipTracker/1.0")
-slug_job = my_bot.slugify("")
+slug_job = my_bot.slugify([titles])
 jobs_dict = my_bot.get_apprenticeships(slug_job)
 sync_jobs(jobs_dict, connection)
 
