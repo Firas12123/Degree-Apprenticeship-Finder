@@ -6,33 +6,43 @@ from database import db_sync
 class Friendly_Bot():
     def __init__(self,agent_string):
         self.headers = {"User-agent":agent_string}
-        self.cursor = db_sync()[0]
-        self.connection = db_sync()[1]
+        self.connection = db_sync()
+        self.cursor = self.connection.cursor()
     
-    def slugify(self):  # make sure the user input has no capitals and a dash between the two words
+    def slugify(self, title):  # make sure the user input has no capitals and a dash between the two words
         slug_chars = []
         list_slugs = []
-        job_title = ["Software Engineering"]
-        for jobs in job_title:
-            jobs = jobs.strip().replace(" ", "-")  # take out the spaces and adds a hyphen where the space is and turns lowercase
-            for index, char in enumerate(jobs):
-                if char.isupper() and index > 0:
-                    if "-" not in jobs[index - 3:index]:
-                        if index - 3 > 0:
-                            slug_chars.append("-")
-                slug_chars.append(char.lower())
-            slug_job = "".join(slug_chars)
-            slug_chars = []
-            list_slugs.append(slug_job)
-        return list_slugs
+        if title is None:
+            return False
+        else:
+            for jobs in title:
+                jobs = jobs.strip().replace(" ", "-")  # take out the spaces and adds a hyphen where the space is and turns lowercase
+                for index, char in enumerate(jobs):
+                    if char.isupper() and index > 0:
+                        if "-" not in jobs[index - 3:index]:
+                            if index - 3 > 0:
+                                slug_chars.append("-")
+                    slug_chars.append(char.lower())
+                slug_job = "".join(slug_chars)
+                slug_chars = []
+                list_slugs.append(slug_job)
+            print(list_slugs, "slugs")
+            return list_slugs
     
     def get_apprenticeships(self,list_slugs):
+        if "" in list_slugs:
+            list_slugs.remove("")
         if len(list_slugs) > 1:
             word = "technology?role="
             words = ",".join(list_slugs)
+            print(words, "hello")
+        elif len(list_slugs) == 0:
+            print(list_slugs, "helloo")
+            return None
         else:
             word = ""
             words = "".join(list_slugs)
+        print(word, words, "dasda")
         r = requests.get(f"https://higherin.com/search-jobs/degree-apprenticeship/{word}{words}", timeout =5, headers = self.headers)
         r_text = ""
         if r.headers.get("Content-Type", "").startswith("text/html"):
@@ -68,6 +78,5 @@ class Friendly_Bot():
                 jobs_dict[job_id] = {"jobTitle": dictionary["jobTitle"],
                                    "url": dictionary["url"],
                                    "companyName": dictionary["companyName"]}
-        
         return jobs_dict
 

@@ -2,7 +2,9 @@
 .jobs-display,
 .cancel-b,
 .tick-box,
-.yes-no{
+.yes-no,
+#clear-search,
+#submit-job{
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -283,4 +285,66 @@ body{
 .yes-no:hover {
     transform: scale(1.05);
     background: #e8e7e6;
+}
+
+#job-search{
+    text-align: center;
+    border: none;
+    border-radius: 9px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+}
+
+#submit-job{
+    width: 100px;
+    font-size: 19px;
+    border-radius: 7px;
+    border: solid black 1px;
+    background: none;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+#submit-job:hover {
+    transform: scale(1.06)
+}
+
+#jobs-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    width: fit-content;
+
+    border: solid black 1px;
+    border-bottom: none;
+    border-radius: 7px;
+}
+
+#job-form{
+    display: flex;
+    align-items: center;
+}
+
+#clear-search{
+    margin-right: 20px;
+    width: 130px;
+    height: 30px;
+    border: solid black 1px;
+    border-radius: 9px;
+    cursor: pointer;
+    background: none;
+    transition: 0.3s ease;
+    font-size: 16px;
+}
+
+#button-div{
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 30px;
+}
+
+#clear-search:hover {
+    transform: scale(1.05)
 }

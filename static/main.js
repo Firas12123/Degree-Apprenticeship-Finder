@@ -10,6 +10,8 @@ const cancel_button = document.querySelectorAll(".cancel-button")
 const confirm_choice = document.querySelectorAll(".confirm")
 const cancel_b = document.querySelectorAll(".cancel-b")
 const overlays = document.querySelectorAll(".overlay")
+const submit_job = document.getElementById("submit-job")
+const clear_jobs = document.getElementById("clear-search")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -80,7 +82,6 @@ function confirmChoice(index){
     overlays[index].classList.add("active")
 }
 
-
 tick_box.forEach((box, index) =>{
     box.addEventListener("click", () => appliedFor(index));
 })
@@ -101,12 +102,43 @@ cancel_b.forEach((canceler, index) => {
             removeOverlay();
         }
     })
-    canceler.addEventListener("click", removeOverlay)
+    canceler.addEventListener("click", removeOverlay);
 })
+const job_title = document.getElementById("job-search");
+job_title.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault()
+        searchJobs();
+    }
+});
 
+function searchJobs(task){
+    let all_jobs = JSON.parse(localStorage.getItem("jobs")) || []
+    all_jobs.push(job_title.value)
+    localStorage.setItem("jobs", JSON.stringify(all_jobs))
+    fetch("/jobs",{
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            job_title: all_jobs,
+            delete: task
+        })
+    })
+    .then(response =>{
+        if(response.status === 201){
+            localStorage.setItem("jobs", "[]")
+            location.reload()
+        }
+        else{
+            location.reload()    // refreshes only when ready
+        }
+    })
+}
 
-
-
+submit_job.addEventListener("click", () => searchJobs(""))
+clear_jobs.addEventListener("click", () => searchJobs("delete"))
 add_button.addEventListener("click", () => changeCount("+"));
 minus_button.addEventListener("click", () => changeCount("-"));
 
