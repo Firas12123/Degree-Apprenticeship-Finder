@@ -2,7 +2,6 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from database import db_sync
-import os
 
 class Friendly_Bot():
     def __init__(self,agent_string):
@@ -27,23 +26,19 @@ class Friendly_Bot():
                 slug_job = "".join(slug_chars)
                 slug_chars = []
                 list_slugs.append(slug_job)
-            print(list_slugs, "slugs")
             return list_slugs
     
     def get_apprenticeships(self,list_slugs):
         if "" in list_slugs:
             list_slugs.remove("")
         if len(list_slugs) > 1:
-            word = "technology?role="
+            word = "technology?role=" # extra url suffix before our jobs if we have more than 1
             words = ",".join(list_slugs)
-            print(words, "hello")
         elif len(list_slugs) == 0:
-            print(list_slugs, "helloo")
             return None
         else:
             word = ""
             words = "".join(list_slugs)
-        print(word, words, "dasda")
         r = requests.get(f"https://higherin.com/search-jobs/degree-apprenticeship/{word}{words}", timeout =5, headers = self.headers)
         r_text = ""
         if r.headers.get("Content-Type", "").startswith("text/html"):

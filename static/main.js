@@ -4,7 +4,6 @@ const tick_box = document.querySelectorAll  (".tick-box");
 const tick_display = document.querySelectorAll(".tick");
 const job_box = document.querySelectorAll(".jobs-display")
 let applied_for = document.getElementById("applied-counter");
-let amount = Number(localStorage.getItem("counter"));
 const apply_button = document.querySelectorAll(".apply-button")
 const cancel_button = document.querySelectorAll(".cancel-button")
 const confirm_choice = document.querySelectorAll(".confirm")
@@ -12,7 +11,11 @@ const cancel_b = document.querySelectorAll(".cancel-b")
 const overlays = document.querySelectorAll(".overlay")
 const submit_job = document.getElementById("submit-job")
 const clear_jobs = document.getElementById("clear-search")
-const jobs_list = document.getElementById("jobs")
+const filter_button = document.getElementById("filters-button")
+const jobs_filters = document.getElementById("jobs-filters")
+const jobs_select = document.querySelectorAll(".filter-tick")
+const tick_filter_svg = document.querySelectorAll(".tick-filter")
+const job_titles = document.querySelectorAll(".job-titles")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -23,12 +26,14 @@ job_box.forEach((box, index) => {
         apply_button[index].classList.add("active")
     }
 })
+    let amount = Number(localStorage.getItem("counter")) || 0
 
-    if (amount === null) {
-        amount = 0;
-    } else {
-        amount = Number(amount)
+let jobs = localStorage.getItem("jobs")
+job_titles.forEach((job, index) => {
+    if (jobs.includes(job.textContent)){
+        tick_filter_svg[index].classList.add("active")
     }
+})
 
 applied_for.textContent = "Total DA's applied for : " + amount;
 function changeCount(choice) {
@@ -105,25 +110,16 @@ cancel_b.forEach((canceler, index) => {
     })
     canceler.addEventListener("click", removeOverlay);
 })
-const job_title = document.getElementById("job-search");
-job_title.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault()
-        searchJobs();
-    }
-});
 
 function searchJobs(task){
-    let all_jobs = JSON.parse(localStorage.getItem("jobs")) || []
-    all_jobs.push(job_title.value)
-    localStorage.setItem("jobs", JSON.stringify(all_jobs))
+    let jobs = localStorage.getItem("jobs")
     fetch("/jobs",{
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            job_title: all_jobs,
+            job_title: jobs,
             delete: task
         })
     })
@@ -137,18 +133,42 @@ function searchJobs(task){
         }
     })
 }
-function displayJobs() {
-    const all_jobs= JSON.parse(localStorage.getItem("jobs")) || []
-    all_jobs.forEach(job => {
-        const li = document.createElement("li");
-        li.textContent = job;
-        jobs_list.appendChild(li);
-    })
+
+submit_job.addEventListener("click", () => searchJobs(""));
+
+let isFilter = false
+function showFilters(){
+    if (isFilter === false){
+        jobs_filters.classList.add("active")
+    }
+    else{
+        jobs_filters.classList.remove("active")
+    }
+    isFilter = !isFilter
 }
 
 
-submit_job.addEventListener("click", () => searchJobs(""));
+function pickJob(index){
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || []
+    if (jobs.includes(job_titles[index].textContent)){
+        tick_filter_svg[index].classList.remove("active")
+        let place = jobs.indexOf(job_titles[index].textContent)
+        jobs.splice(place, 1)
+    }
+    else{
+        tick_filter_svg[index].classList.add("active")
+        jobs.push(job_titles[index].textContent)
+    }
+    localStorage.setItem("jobs", JSON.stringify(jobs))
+}
+
+
+
+jobs_select.forEach((tick, index) => {
+    tick.addEventListener("click", () => pickJob(index))
+})
+
+filter_button.addEventListener("click", showFilters)
 clear_jobs.addEventListener("click", () => searchJobs("delete"));
 add_button.addEventListener("click", () => changeCount("+"));
 minus_button.addEventListener("click", () => changeCount("-"));
-displayJobs();

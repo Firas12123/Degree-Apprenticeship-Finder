@@ -7,7 +7,7 @@ I built this project to allow me to apply early to my chosen Degree Apprenticesh
 ## Core Features
 * **Automated Web Scraping:** Extracts live job data from safe scraper friendly career sites
 * **Email Alerts:** Sends email notifications when new roles are detected (via Github automation)
-* **Interactive Dashboard:** A Flask web interface using JavaScript's POST method and Jinja to handle backend data
+* **Interactive Dashboard:** A Flask web interface using JavaScript's POST method and Jinja to handle backend data and a user interface insuring maximum user satisfaction through a range of button functions and other utilities (such as changing the job search)
 * **Data Handling:** SQLite to store active jobs and track users removed jobs, used a JSON file that the Github agent appends after each new job so no duplicate emails are sent
 ## Tech Stack
 * **Backend:** Python, Flask

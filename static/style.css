@@ -4,7 +4,8 @@
 .tick-box,
 .yes-no,
 #clear-search,
-#submit-job{
+#submit-job,
+#jobs-filters{
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -28,6 +29,7 @@ body{
     display: flex;
     position: relative;
     border-bottom: solid black 1px;
+    height: 77px;
 }
 
 #main-jobs{
@@ -356,7 +358,7 @@ body{
 
 #clear-search{
     margin-right: 20px;
-    width: fit-content;
+    width: 100px;
     height: 30px;
     border: solid black 1px;
     border-radius: 9px;
@@ -374,4 +376,77 @@ body{
 
 #clear-search:hover {
     transform: scale(1.05)
+}
+
+#jobs-filters{
+    position: absolute;
+    border: black solid 1px;
+    text-align: start;
+    justify-content: space-between;
+    min-width: 200px;
+    border-radius: 7px;
+    padding: 5px;
+    background: white;
+    visibility: hidden;
+    transition: 0.3s ease, 0.3s ease;
+    top: 50px;
+    opacity: 0;
+    z-index: 20;
+}
+
+.job-title{
+    margin-left: 20px;
+}
+
+#jobs-filters.active{
+    visibility: visible;
+    transform: translateY(35px);
+    opacity: 1;
+}
+
+#filters-division{
+    position: absolute;
+    left: 70%;
+}
+
+.job-titles{
+    font-size: 16px;
+
+}
+
+#filters-button{
+    max-width: 50px;
+    background: none;
+    border: solid black 1px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.filter-tick{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 23px;
+    width: 23px;
+    border: black solid 1px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.tick-filter{
+    margin-left: auto;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    visibility: hidden;
+}
+
+.tick-filter.active{
+    visibility: visible;
+}
+
+#jobs-select{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
