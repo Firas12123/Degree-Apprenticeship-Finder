@@ -16,6 +16,7 @@ const jobs_filters = document.getElementById("jobs-filters")
 const jobs_select = document.querySelectorAll(".filter-tick")
 const tick_filter_svg = document.querySelectorAll(".tick-filter")
 const job_titles = document.querySelectorAll(".job-titles")
+const filter_div = document.getElementById("filters")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -28,13 +29,14 @@ job_box.forEach((box, index) => {
 })
     let amount = Number(localStorage.getItem("counter")) || 0
 
-let jobs = localStorage.getItem("jobs")
-job_titles.forEach((job, index) => {
-    if (jobs.includes(job.textContent)){
-        tick_filter_svg[index].classList.add("active")
-    }
-})
-
+let jobs = JSON.parse(localStorage.getItem("jobs")) || []
+if (jobs.length > 0) {
+    job_titles.forEach((job, index) => {
+        if (jobs.includes(job.textContent)) {
+            tick_filter_svg[index].classList.add("active")
+        }
+    })
+}
 applied_for.textContent = "Total DA's applied for : " + amount;
 function changeCount(choice) {
     if (choice === "-") {
@@ -145,6 +147,11 @@ function showFilters(){
         jobs_filters.classList.remove("active")
     }
     isFilter = !isFilter
+    document.addEventListener("click", (event) =>{
+        if (!filter_div.contains(event.target)){
+            jobs_filters.classList.remove("active")
+        }
+    })
 }
 
 
@@ -161,7 +168,6 @@ function pickJob(index){
     }
     localStorage.setItem("jobs", JSON.stringify(jobs))
 }
-
 
 
 jobs_select.forEach((tick, index) => {
