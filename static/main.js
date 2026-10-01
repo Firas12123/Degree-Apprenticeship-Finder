@@ -17,6 +17,8 @@ const jobs_select = document.querySelectorAll(".filter-tick")
 const tick_filter_svg = document.querySelectorAll(".tick-filter")
 const job_titles = document.querySelectorAll(".job-titles")
 const filter_div = document.getElementById("filters")
+const yes_button = document.querySelectorAll(".yes")
+const no_button = document.querySelectorAll(".no")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -111,6 +113,7 @@ cancel_b.forEach((canceler, index) => {
         }
     })
     canceler.addEventListener("click", removeOverlay);
+    no_button[index].addEventListener("click", removeOverlay)
 })
 
 function searchJobs(task){

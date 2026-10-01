@@ -11,6 +11,15 @@
 <body>
 <header>
     <nav class="navbar">
+        <a id="removed-jobs" href ="{{ url_for("removed_jobs") }}">
+            <svg id="bin-icon" xmlns="http://www.w3.org/2000/svg" width="24"height="24"viewBox="0 0 24 24"fill="none"stroke="currentColor"stroke-width="2"stroke-linecap="round"stroke-linejoin="round">
+                <path d="M3 6h18"></path>
+                <path d="M8 6V4h8v2"></path>
+                <path d="M19 6l-1 14H6L5 6"></path>
+                <path d="M10 11v5"></path>
+                <path d="M14 11v5"></path>
+            </svg>
+        </a>
         <p class="main-font" id="nav-title">DegreeApprenticeshipTracker</p>
         <div class="nav-counter">
             <p class="main-font" id="applied-counter"></p>

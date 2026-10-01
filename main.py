@@ -65,7 +65,9 @@ def give_jobs():
         sync_jobs(jobs_dict, connection)
         return "", 200
     
-    
+@app.route("/removed_jobs")
+def removed_jobs():
+    return render_template("Removed.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

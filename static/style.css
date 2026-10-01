@@ -28,6 +28,7 @@ body{
 .navbar{
     display: flex;
     position: relative;
+    align-items: center;
     border-bottom: solid black 1px;
     height: 77px;
 }
@@ -431,6 +432,32 @@ body{
     border: black solid 1px;
     border-radius: 2px;
     cursor: pointer;
+}
+
+#removed-jobs{
+    text-decoration: none;
+    color: black;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 35px;
+    width: 35px;
+}
+
+#bin-icon{
+    height: 35px;
+    width: 35px;
+    flex-shrink: 0;
+    transition: 0.4s ease;
+    border: red 0;
+    padding: 2px;
+}
+
+#bin-icon:hover {
+    transform: scale(1.04);
+        border-radius: 10px;
+    border: solid black 1px;
 }
 
 .tick-filter{
