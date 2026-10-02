@@ -5,7 +5,9 @@
 .yes-no,
 #clear-search,
 #submit-job,
-#jobs-filters{
+#jobs-filters,
+.restore-button,
+#title-nav{
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -45,14 +47,6 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-#company{
-    background: #e8e7e6;
-    border: solid lightgrey 1px;
-    border-radius: 7px;
-    padding: 5px 8px 5px;
-    width: fit-content;
 }
 
 #name-div{
@@ -476,4 +470,86 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+#title-nav{
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s ease;
+}
+
+#title-nav:hover {
+    transform: scale(1.05);
+}
+
+#home-button{
+    text-decoration: none;
+    margin: auto;
+}
+
+#delete-nav{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    border-bottom: black solid 1px;
+}
+
+#jobs-display{
+    max-width: 500px;
+
+}
+
+#deleted-jobs{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 50px;
+    gap: 15px;
+    padding: 0 15px;
+}
+
+#top-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#company{
+    background: #e8e7e6;
+    border: solid lightgrey 1px;
+    border-radius: 7px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 5px 8px 5px;
+    width: fit-content;
+}
+
+.restore-button{
+    background: #e8e7e6;
+    border: solid lightgrey 1px;
+    border-radius: 7px;
+    width: fit-content;
+    cursor: pointer;
+    height:30px;
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease;
+}
+
+.restore-button:hover {
+    transform: scale(1.06);
+    border: black solid 1px;
+}
+
+.removed-overlay{
+    display: none;
+    position: fixed;
+    inset: 1px;
+    backdrop-filter: blur(2px);
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.removed-overlay.active{
+    display: flex;
 }

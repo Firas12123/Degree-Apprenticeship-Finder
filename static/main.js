@@ -114,6 +114,7 @@ cancel_b.forEach((canceler, index) => {
     })
     canceler.addEventListener("click", removeOverlay);
     no_button[index].addEventListener("click", removeOverlay)
+    yes_button[index].addEventListener("click", () => changeJob(index,1))
 })
 
 function searchJobs(task){
@@ -171,7 +172,6 @@ function pickJob(index){
     }
     localStorage.setItem("jobs", JSON.stringify(jobs))
 }
-
 
 jobs_select.forEach((tick, index) => {
     tick.addEventListener("click", () => pickJob(index))

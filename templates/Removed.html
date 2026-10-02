@@ -2,9 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
     <title>Title</title>
 </head>
 <body>
-
+<nav id="delete-nav">
+    <a id="title-nav" class="main-font" href="{{ url_for("home") }}"> DegreeApprenticeshipTracker </a>
+    <a id="home-button" class="main-font" href="{{ url_for("home") }}">Home</a>
+</nav>
+<div id="deleted-jobs">
+    {% for jobs in removed %}
+    <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
+        <div id="top-box">
+            <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
+            <button type="button" class="main-font restore-button">Restore Jobs</button>
+            <div class="removed-overlay">
+            </div>
+        </div>
+        <div class="name-div">
+            <h2 class="main-font" id="job-name">{{ jobs[1] }}</h2>
+            <a class="main-font apply-button" href="{{ jobs[2] }}" target="_blank">Apply here</a>
+        </div>
+    </div>
+    {%  endfor %}
+</div>
 </body>
+<script src="{{ url_for('static', filename='crossfile.js') }}"></script>
+<script src="{{ url_for('static', filename='removed.js') }}" ></script>
 </html>

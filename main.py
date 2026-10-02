@@ -1,6 +1,6 @@
 import os
 from scraper import Friendly_Bot
-from database import insert_jobs, db_sync, jobs_database, get_jobs
+from database import insert_jobs, db_sync, jobs_database, get_jobs, get_removed_jobs
 from flask import Flask, render_template, request
 from email_sender import send_emails
 import json
@@ -64,10 +64,24 @@ def give_jobs():
         jobs_dict = my_bot.get_apprenticeships(slug_job)
         sync_jobs(jobs_dict, connection)
         return "", 200
-    
+
+@app.route("/remove", methods = ["POST"])
+def change_job():
+    cursor = connection.cursor()
+    data = request.get_json()
+    id = data.get("id")
+    choice = data.get("choice")
+    print(id, choice)
+    cursor.execute("UPDATE jobs SET hidden = ? WHERE jobId = ?", (choice, id))
+    cursor.execute("SELECT * FROM jobs WHERE jobId = ?", (id,))
+    job = cursor.fetchone()
+    print(job)
+    return "", 200
+
 @app.route("/removed_jobs")
 def removed_jobs():
-    return render_template("Removed.html")
+    jobs = get_removed_jobs(connection)
+    return render_template("Removed.html", removed = jobs)
 
 if __name__ == "__main__":
     app.run(debug=True)
