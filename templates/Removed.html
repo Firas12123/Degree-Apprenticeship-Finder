@@ -8,14 +8,14 @@
 <body>
 <nav id="delete-nav">
     <a id="title-nav" class="main-font" href="{{ url_for("home") }}"> DegreeApprenticeshipTracker </a>
-    <a id="home-button" class="main-font" href="{{ url_for("home") }}">Home</a>
+    <a id="home-button" class="main-font" href="{{ url_for("home") }}">Back home</a>
 </nav>
 <div id="deleted-jobs">
     {% for jobs in removed %}
     <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
         <div id="top-box">
             <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
-            <button type="button" class="main-font restore-button">Restore Jobs</button>
+            <button type="button" class="main-font restore-button">Restore this job</button>
             <div class="removed-overlay">
             </div>
         </div>

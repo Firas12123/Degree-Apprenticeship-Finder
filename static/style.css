@@ -60,7 +60,7 @@ body{
     border-radius: 10px;
     padding: 0 10px;
     box-sizing: border-box;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .overlay{
@@ -74,6 +74,10 @@ body{
 
 .overlay.active{
     display: flex;
+}
+
+.jobs-display.active{
+    pointer-events: none;
 }
 
 .jobs-display:hover {
@@ -483,15 +487,19 @@ body{
 }
 
 #home-button{
+    position: absolute;
     text-decoration: none;
-    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #delete-nav{
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 60px;
     border-bottom: black solid 1px;
+    position: relative;
 }
 
 #jobs-display{
@@ -525,7 +533,8 @@ body{
 }
 
 .restore-button{
-    background: #e8e7e6;
+    background: #0000FF;
+    color: lightgrey;
     border: solid lightgrey 1px;
     border-radius: 7px;
     width: fit-content;
@@ -533,7 +542,11 @@ body{
     height:30px;
     display: flex;
     align-items: center;
-    transition: 0.3s ease;
+    transition: 0.8s ease, opacity 0.8s ease;
+}
+
+.restore-button.active{
+    pointer-events: none;
 }
 
 .restore-button:hover {

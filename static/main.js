@@ -19,6 +19,7 @@ const job_titles = document.querySelectorAll(".job-titles")
 const filter_div = document.getElementById("filters")
 const yes_button = document.querySelectorAll(".yes")
 const no_button = document.querySelectorAll(".no")
+const bin_button = document.getElementById("removed-jobs")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
