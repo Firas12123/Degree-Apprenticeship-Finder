@@ -410,7 +410,7 @@ body{
 }
 
 .job-titles{
-    font-size: 16px;
+    font-size: 17px;
 
 }
 
@@ -492,6 +492,9 @@ body{
     text-decoration: none;
     left: 50%;
     transform: translateX(-50%);
+    border: black solid 1px;
+    border-radius: 17px;
+    padding: 10px 20px;
 }
 
 #delete-nav{
@@ -579,6 +582,10 @@ body{
     border: solid black 1px;
     border-radius: 30px;
     padding: 25px;
+}
+
+#no-jobs.active{
+    display: none;
 }
 
 #no-jobs:hover {
