@@ -26,14 +26,14 @@ def insert_jobs(jobs_dict, connection):
     
 def get_jobs(connection):
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM jobs WHERE hidden = 0")
+    cursor.execute("SELECT * FROM jobs WHERE hidden = 0 ORDER BY applied ASC")
     job = cursor.fetchall()
     connection.commit()
     return job
 
 def get_removed_jobs(connection):
     cursor = connection.cursor()
-    cursor.execute("SELECT * FROM jobs WHERE hidden = 1")
+    cursor.execute("SELECT * FROM jobs WHERE hidden = 1 ORDER BY applied ASC ")
     removed_jobs = cursor.fetchall()
     connection.commit()
     return removed_jobs

@@ -20,6 +20,7 @@ const filter_div = document.getElementById("filters")
 const yes_button = document.querySelectorAll(".yes")
 const no_button = document.querySelectorAll(".no")
 const bin_button = document.getElementById("removed-jobs")
+const main_jobs = document.getElementById("main-jobs")
 let total_applied = 0
 
 job_box.forEach((box, index) => {
@@ -83,9 +84,25 @@ function appliedFor(index) {
             applied: applied,
             job_id: job_id
         })
-    });
+    })
+    .then(response=>{
+        if (response.status === 200){
+            moveJobs(index, applied)
+        }
+    })
     localStorage.setItem("counter", String(amount))
     applied_for.textContent = "Total DA's applied for : " + amount;
+}
+
+function moveJobs(index, applied){
+    job_box[index].remove()
+    if (applied === 1){
+        main_jobs.append(job_box[index]);
+    }
+    else{
+        main_jobs.prepend(job_box[index])
+    }
+
 }
 
 function confirmChoice(index){
@@ -136,7 +153,7 @@ function searchJobs(task){
             location.reload()
         }
         else{
-            location.reload()    // refreshes only when ready
+            location.reload()
         }
     })
 }

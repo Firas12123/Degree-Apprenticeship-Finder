@@ -7,7 +7,8 @@
 #submit-job,
 #jobs-filters,
 .restore-button,
-#title-nav{
+#title-nav,
+#no-jobs{
     will-change: transform;
     backface-visibility: hidden;
 }
@@ -565,4 +566,21 @@ body{
 
 .removed-overlay.active{
     display: flex;
+}
+
+#no-jobs{
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    border: solid black 1px;
+    border-radius: 30px;
+    padding: 25px;
+}
+
+#no-jobs:hover {
+    transform: translate(-50%, -50%) scale(1.06);
 }

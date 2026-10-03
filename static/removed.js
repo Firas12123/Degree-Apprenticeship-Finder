@@ -4,3 +4,6 @@ const job_box = document.querySelectorAll(".jobs-display")
 restore_button.forEach((button,index) => {
     button.addEventListener("click", () => changeJob(index, 0))
 })
+if (job_box.length === 0){
+
+}
