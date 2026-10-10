@@ -28,6 +28,7 @@ job_box.forEach((box, index) => {
         tick_display[index].classList.add("active")
         total_applied++
         apply_button[index].textContent = "Applied"
+        job_box[index].style.setProperty("background", "lightgrey")
         apply_button[index].classList.add("active")
     }
 })
@@ -62,6 +63,7 @@ function appliedFor(index) {
         total_applied++;
         amount++
         apply_button[index].classList.add("active")
+        job_box[index].style.setProperty("Background", "lightgrey")
         apply_button[index].textContent = "Applied"
 
     } else if (applied === 1) {
@@ -70,6 +72,7 @@ function appliedFor(index) {
         total_applied--
         amount--
         apply_button[index].classList.remove("active")
+        job_box[index].style.setProperty("Background", "transparent")
         apply_button[index].textContent = "Apply here"
     }
     job_box[index].dataset.applied = String(applied)

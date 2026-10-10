@@ -11,7 +11,7 @@
 <body>
 <header>
     <nav class="navbar">
-        <a id="removed-jobs" href ="{{ url_for("removed_jobs") }}">
+        <a id="removed-jobs" href ="{{ url_for('removed_jobs') }}">
             <svg id="bin-icon" xmlns="http://www.w3.org/2000/svg" width="24"height="24"viewBox="0 0 24 24"fill="none"stroke="currentColor"stroke-width="2"stroke-linecap="round"stroke-linejoin="round">
                 <path d="M3 6h18"></path>
                 <path d="M8 6V4h8v2"></path>
@@ -34,7 +34,7 @@
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
             </button>
-            <p style="margin-left: 8px;" class="main-font">Hopefully not alot</p>
+            <p style="margin-left: 8px;" class="main-font"></p>
         </div>
     <div id="filters-division">
         <div id="filter-layout">
@@ -73,7 +73,10 @@
 <div id="main-jobs">
     {% for jobs in jobs_dict %}
         <div class="jobs-display" data-id="{{ jobs[0] }}"  data-applied="{{ jobs[4] }}">
-        <h1 class="main-font" id="company"> {{ jobs[3] }} </h1>
+        <div id="jobs-details-div">
+            <p class="main-font" id="company"> {{ jobs[3] }} </p>
+            <p class="main-font" id="location"> {{ jobs[6] }} </p>
+        </div>
         <div class="name-div">
             <button type="button" class="cancel-button">
                 <svg id="x-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">

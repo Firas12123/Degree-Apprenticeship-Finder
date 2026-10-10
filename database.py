@@ -13,7 +13,8 @@ def jobs_database(connection):   # creates database if it's not already made
                 url TEXT,
                 companyName TEXT,
                 applied INTEGER DEFAULT 0,
-                hidden INTEGER DEFAULT 0
+                hidden INTEGER DEFAULT 0,
+                location TEXT
                 )""")
     connection.commit()
 
@@ -21,7 +22,7 @@ def jobs_database(connection):   # creates database if it's not already made
 def insert_jobs(jobs_dict, connection):
     cursor = connection.cursor()
     for jobs_id, details in jobs_dict.items(): # inserts the job details into the database
-        cursor.execute("INSERT OR IGNORE INTO jobs (jobId, jobTitle, url, companyName) VALUES(?,?,?,?)",(jobs_id,details["jobTitle"], details["url"], details["companyName"]))
+        cursor.execute("INSERT OR IGNORE INTO jobs (jobId, jobTitle, url, companyName, location) VALUES(?,?,?,?,?)",(jobs_id,details["jobTitle"], details["url"], details["companyName"], details["location"]))
     connection.commit()
     
 def get_jobs(connection):

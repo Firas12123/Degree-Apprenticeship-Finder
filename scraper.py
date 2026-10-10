@@ -62,6 +62,11 @@ class Friendly_Bot():
         json_data = json.loads(script_data)  # gets the specific "jobId"
         jobs_dict = {}
         for dictionary in json_data["data"]:
+            job_locations = dictionary.get("jobLocationNames")
+            if "London" in job_locations:
+                lnd_place = job_locations.find("London")
+                londonless = job_locations[:lnd_place] + job_locations[(lnd_place+len("London")):]
+                job_locations = "London, "+ londonless
             job_id = dictionary["jobId"]
             target_name = "Register Your Interest - "
             target_len = len(target_name)
@@ -69,10 +74,12 @@ class Friendly_Bot():
             if target_name in company_name:
                 jobs_dict[job_id] = {"jobTitle": company_name[target_len:],
                                      "url": dictionary["url"],
-                                     "companyName": dictionary["companyName"]}
+                                     "companyName": dictionary["companyName"],
+                                     "location": job_locations}
             else:
                 jobs_dict[job_id] = {"jobTitle": dictionary["jobTitle"],
                                    "url": dictionary["url"],
-                                   "companyName": dictionary["companyName"]}
+                                   "companyName": dictionary["companyName"],
+                                   "location": job_locations}
         return jobs_dict
 
